@@ -20,6 +20,19 @@ locals {
 }
 
 #####
+# Randoms
+#####
+
+resource "random_string" "selector" {
+  count = var.enabled ? 1 : 0
+
+  special = false
+  upper   = false
+  length  = 20
+}
+
+
+#####
 # EFS
 #####
 
@@ -27,18 +40,18 @@ module "efs" {
   source = "git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-efs.git?ref=2.0.0"
 
   enabled                         = var.enabled
-  name                            = var.efs_name 
+  name                            = var.efs_name
   performance_mode                = var.efs_performance_mode
   provisioned_throughput_in_mibps = var.efs_provisioned_throughput_in_mibps
   throughput_mode                 = var.efs_throughput_mode
   allowed_security_group_ids      = var.allowed_security_group_ids
   efs_tags                        = var.efs_tags
-  kms_key_alias_name              = var.efs_kms_key_alias_name 
-  kms_key_name                    = var.efs_kms_key_name 
+  kms_key_alias_name              = var.efs_kms_key_alias_name
+  kms_key_name                    = var.efs_kms_key_name
   kms_key_create                  = true
   kms_tags                        = var.efs_kms_tags
   ssm_parameter_enabled           = false
-  security_group_name             = var.efs_security_group_name 
+  security_group_name             = var.efs_security_group_name
   security_group_tags             = var.efs_security_group_tags
   subnet_ids                      = var.efs_subnet_ids
   tags                            = merge(var.tags, var.efs_tags)
@@ -140,7 +153,7 @@ resource "kubernetes_cluster_role_binding" "this" {
 
   subject {
     kind      = "ServiceAccount"
-    name      = element(concat(kubernetes_service_account.this.*.metadata.0.name , list("")), 0)
+    name      = element(concat(kubernetes_service_account.this.*.metadata.0.name, list("")), 0)
     namespace = var.namespace
   }
 }
@@ -200,7 +213,7 @@ resource "kubernetes_role_binding" "this" {
 
   subject {
     kind      = "ServiceAccount"
-    name      = element(concat(kubernetes_service_account.this.*.metadata.0.name , list("")), 0)
+    name      = element(concat(kubernetes_service_account.this.*.metadata.0.name, list("")), 0)
     namespace = var.namespace
   }
 }
@@ -264,7 +277,8 @@ resource "kubernetes_deployment" "this" {
 
     selector {
       match_labels = {
-        app = "efs-provisioner"
+        app    = "efs-provisioner"
+        random = element(concat(random_string.selector.*.result, list("")), 0)
       }
     }
 
@@ -281,32 +295,35 @@ resource "kubernetes_deployment" "this" {
           local.labels,
           var.labels,
           var.deployment_labels,
-          app = "efs-provisioner"
+          {
+            app    = "efs-provisioner"
+            random = element(concat(random_string.selector.*.result, list("")), 0)
+          }
         )
       }
 
       spec {
-        service_account_name            = element(concat(kubernetes_service_account.this.*.metadata.0.name , list("")), 0)
+        service_account_name            = element(concat(kubernetes_service_account.this.*.metadata.0.name, list("")), 0)
         automount_service_account_token = true
         container {
           image = "quay.io/external_storage/efs-provisioner:${var.image_version}"
           name  = "efs-provisioner"
 
           env {
-            name = "FILE_SYSTEM_ID"
+            name  = "FILE_SYSTEM_ID"
             value = module.efs.efs_id
           }
 
           env {
-            name = "AWS_REGION"
+            name  = "AWS_REGION"
             value = data.aws_region.this.name
           }
           env {
-            name = "DNS_NAME"
+            name  = "DNS_NAME"
             value = module.efs.efs_dns_name
           }
           env {
-            name = "PROVISIONER_NAME"
+            name  = "PROVISIONER_NAME"
             value = local.storage_provisioner
           }
 
@@ -326,4 +343,3 @@ resource "kubernetes_deployment" "this" {
     }
   }
 }
-
