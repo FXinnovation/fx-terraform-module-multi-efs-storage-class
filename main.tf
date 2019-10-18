@@ -10,6 +10,13 @@ data "aws_region" "this" {}
 
 locals {
   storage_provisioner = "aws.amazon.com/efs"
+  labels = {
+    "app.kubernetes.io/name"       = "efs-provisioner"
+    "app.kubernetes.io/version"    = var.image_version
+    "app.kubernetes.io/component"  = "storage"
+    "app.kubernetes.io/part-of"    = "kubernetes"
+    "app.kubernetes.io/managed-by" = "terraform"
+  }
 }
 
 #####
