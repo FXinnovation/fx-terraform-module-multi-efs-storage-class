@@ -48,4 +48,26 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | storage\_class\_name | Name of the storage class. | string | `"efs"` | no |
 | tags | Map of tags that will be applied and merge with all the AWS resources. | map | `{}` | no |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| cluster\_role\_binding\_name | Name of the kubernetes cluster role binding created for the efs-provisioner. |
+| cluster\_role\_name | Name of the kubernetes cluster role created for the efs-provisioner. |
+| deployment\_name | Name of the kubernetes deployment created for the efs-provisioner. |
+| efs\_arn | Amazon Resource Name of the file system. |
+| efs\_dns\_name | The DNS name for the filesystem. |
+| efs\_id | The ID that identifies the file system (e.g. fs-ccfc0d65). |
+| efs\_kms\_alias\_arn | The Amazon Resource Name (ARN) of the EFS key alias. This output will be empty if the KMS key was passed as variable. |
+| efs\_kms\_key\_arn | The Amazon Resource Name (ARN) of the EFS key. This output will be empty if the KMS key was passed as variable. |
+| efs\_kms\_key\_id | The globally unique identifier for the EFS key. This output will be empty if the KMS key was passed as variable. |
+| efs\_mount\_target\_ids | The IDs of the EFS mount targets. |
+| efs\_mount\_target\_network\_interface\_ids | The IDs of the network interfaces that Amazon EFS created when it created the mount targets. |
+| efs\_security\_group\_id | ID of the security group used for the EFS. This output will be empty if the security groups IDs were passed as variables. |
+| namespace | Namespace in which the efs-storage-class is deployed. |
+| role\_binding\_name | Name of the kubernetes role binding created for the efs-provisioner. |
+| role\_name | Name of the kubernetes role created for the efs-provisioner. |
+| service\_account\_name | Name of the kubernetes service account created for the efs-provisioner. |
+| storage\_class\_name | Name of the kubernetes storage class created. |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
