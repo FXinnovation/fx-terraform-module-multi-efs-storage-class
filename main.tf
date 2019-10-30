@@ -44,7 +44,7 @@ module "efs" {
   performance_mode                = var.efs_performance_mode
   provisioned_throughput_in_mibps = var.efs_provisioned_throughput_in_mibps
   throughput_mode                 = var.efs_throughput_mode
-  allowed_security_group_ids      = var.allowed_security_group_ids
+  allowed_security_group_ids      = var.efs_allowed_security_group_ids
   efs_tags                        = var.efs_tags
   kms_key_alias_name              = var.efs_kms_key_alias_name
   kms_key_name                    = var.efs_kms_key_name

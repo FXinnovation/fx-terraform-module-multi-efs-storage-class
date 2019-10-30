@@ -55,7 +55,8 @@ module "eks_worker_pool" {
 module "efs_storage_class" {
   source = "../../"
 
-  efs_name                = random_string.this.result
-  efs_security_group_name = random_string.this.result
-  efs_subnet_ids          = tolist(data.aws_subnet_ids.this.ids)
+  efs_name                       = random_string.this.result
+  efs_security_group_name        = random_string.this.result
+  efs_subnet_ids                 = tolist(data.aws_subnet_ids.this.ids)
+  efs_allowed_security_group_ids = [module.eks.security_group_id, module.eks_worker_pool.security_group_id]
 }
