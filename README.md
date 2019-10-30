@@ -18,7 +18,6 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | deployment\_labels | Map of labels that will be added to the deployment. | map | `{}` | no |
 | deployment\_name | Name of the deployment that will be created in kubernetes. | string | `"efs-provisioner"` | no |
 | deployment\_replicas | Number of replicas for the deployment. | string | `"2"` | no |
-| efs\_efs\_tags | Tags to add on the AWS EFS. | map | `{}` | no |
 | efs\_kms\_key\_alias\_name | Name of the alias for the KMS key used by the AWS EFS. | string | `""` | no |
 | efs\_kms\_key\_name | Name of the KMS key used by the AWS EFS. | string | `""` | no |
 | efs\_kms\_tags | Tags to add on the AWS EFS. | map | `{}` | no |

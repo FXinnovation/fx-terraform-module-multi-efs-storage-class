@@ -53,11 +53,6 @@ variable "deployment_replicas" {
   default     = 2
 }
 
-variable "efs_efs_tags" {
-  description = "Tags to add on the AWS EFS."
-  default     = {}
-}
-
 variable "efs_name" {
   description = "Name of the AWS EFS that will be created."
   type        = string
