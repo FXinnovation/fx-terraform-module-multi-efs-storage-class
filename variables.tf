@@ -65,27 +65,30 @@ variable "efs_name" {
 
 variable "efs_performance_mode" {
   description = "Performance mode of the AWS EFS."
-  default     = ""
+  default     = null
+  type        = string
 }
 
 variable "efs_provisioned_throughput_in_mibps" {
   description = "Provisioned throughput in MiB/s for the AWS EFS."
-  default     = ""
+  default     = null
+  type        = number
 }
 
 variable "efs_throughput_mode" {
   description = "Troughput mode for the AWS EFS."
-  default     = ""
+  default     = null
+  type        = string
 }
 
 variable "efs_kms_key_alias_name" {
   description = "Name of the alias for the KMS key used by the AWS EFS."
-  default     = ""
+  default     = "alias/efs-storage-class-k8s"
 }
 
 variable "efs_kms_key_name" {
   description = "Name of the KMS key used by the AWS EFS."
-  default     = ""
+  default     = "efs-storage-class-k8s"
 }
 
 variable "efs_kms_tags" {
