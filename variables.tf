@@ -53,6 +53,11 @@ variable "deployment_replicas" {
   default     = 2
 }
 
+variable "efs_allowed_security_group_ids" {
+  description = "List of security group ids that are allowed to communicate with EFS."
+  default     = []
+}
+
 variable "efs_name" {
   description = "Name of the AWS EFS that will be created."
   type        = string
@@ -68,7 +73,7 @@ variable "efs_provisioned_throughput_in_mibps" {
   default     = ""
 }
 
-variable "efs_troughput_mode" {
+variable "efs_throughput_mode" {
   description = "Troughput mode for the AWS EFS."
   default     = ""
 }
@@ -158,7 +163,7 @@ variable "role_name" {
   default     = "efs-provisioner"
 }
 
-variable "serivce_account_name" {
+variable "service_account_name" {
   description = "Name of the service account that will be created in kubernetes."
   default     = "efs-provisioner"
 }

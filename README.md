@@ -18,6 +18,7 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | deployment\_labels | Map of labels that will be added to the deployment. | map | `{}` | no |
 | deployment\_name | Name of the deployment that will be created in kubernetes. | string | `"efs-provisioner"` | no |
 | deployment\_replicas | Number of replicas for the deployment. | string | `"2"` | no |
+| efs\_allowed\_security\_group\_ids | List of security group ids that are allowed to communicate with EFS. | list | `[]` | no |
 | efs\_kms\_key\_alias\_name | Name of the alias for the KMS key used by the AWS EFS. | string | `""` | no |
 | efs\_kms\_key\_name | Name of the KMS key used by the AWS EFS. | string | `""` | no |
 | efs\_kms\_tags | Tags to add on the AWS EFS. | map | `{}` | no |
@@ -28,7 +29,7 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | efs\_security\_group\_tags | Tags to add on the security group for AWS EFS. | map | `{}` | no |
 | efs\_subnet\_ids | Subnet ID's from which the AWS EFS will be available. | list | n/a | yes |
 | efs\_tags | Map of tags that will applied and merged with all the AWS EFS related resources. | map | `{}` | no |
-| efs\_troughput\_mode | Troughput mode for the AWS EFS. | string | `""` | no |
+| efs\_throughput\_mode | Troughput mode for the AWS EFS. | string | `""` | no |
 | enabled | Whether or not to enable this module. | string | `"true"` | no |
 | image\_version | Version of the docker image to use for the efs-provisionner docker image. | string | `"latest"` | no |
 | labels | Map of labels that will be applied on all kubernetes resources. | map | `{}` | no |
@@ -39,9 +40,9 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | role\_binding\_name | Name of the cluster role binding that will be created in kubernetes. | string | `"efs-provisioner"` | no |
 | role\_labels | Map of labels that will be added to the cluster role. | map | `{}` | no |
 | role\_name | Name of the cluster role that will be created in kubernetes. | string | `"efs-provisioner"` | no |
-| serivce\_account\_name | Name of the service account that will be created in kubernetes. | string | `"efs-provisioner"` | no |
 | service\_account\_annotations | Map of annotations that will be added on the service account. | map | `{}` | no |
 | service\_account\_labels | Map of labels that will be added on the service account. | map | `{}` | no |
+| service\_account\_name | Name of the service account that will be created in kubernetes. | string | `"efs-provisioner"` | no |
 | storage\_class\_annotations | Map of annotations that will be added on the storage class. | map | `{}` | no |
 | storage\_class\_labels | Map of labels that will be added on the storage class. | map | `{}` | no |
 | storage\_class\_name | Name of the storage class. | string | `"efs"` | no |

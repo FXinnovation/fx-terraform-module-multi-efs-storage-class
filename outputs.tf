@@ -15,7 +15,7 @@ output "efs_dns_name" {
 
 output "efs_mount_target_network_interface_ids" {
   description = "The IDs of the network interfaces that Amazon EFS created when it created the mount targets."
-  value       = module.efs.efs_nount_target_network_interface_ids
+  value       = module.efs.efs_mount_target_network_interface_ids
 }
 
 output "efs_mount_target_ids" {
