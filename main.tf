@@ -9,7 +9,6 @@ data "aws_region" "this" {}
 #####
 
 locals {
-  storage_provisioner = "aws.amazon.com/efs"
   labels = {
     "app.kubernetes.io/name"       = "efs-provisioner"
     "app.kubernetes.io/version"    = var.image_version
@@ -37,7 +36,7 @@ resource "random_string" "selector" {
 #####
 
 module "efs" {
-  source = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-aws-efs.git?ref=2.0.0"
+  source = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-aws-efs.git?ref=2.1.0"
 
   enabled                         = var.enabled
   name                            = var.efs_name
@@ -241,7 +240,7 @@ resource "kubernetes_storage_class" "this" {
     )
   }
 
-  storage_provisioner = local.storage_provisioner
+  storage_provisioner = "aws.amazon.com/efs"
 }
 
 #####
@@ -255,6 +254,7 @@ resource "kubernetes_deployment" "this" {
     name      = var.deployment_name
     namespace = var.namespace
     annotations = merge(
+      map("fxinnovation.com/dependency", sha256(format("%s-%s", module.efs.kms_alias_arn, join("-", module.efs.security_group_rule_ids, module.efs.efs_mount_target_ids)))),
       var.annotations,
       var.deployment_annotations
     )
@@ -324,7 +324,7 @@ resource "kubernetes_deployment" "this" {
           }
           env {
             name  = "PROVISIONER_NAME"
-            value = local.storage_provisioner
+            value = kubernetes_storage_class.this.0.storage_provisioner
           }
 
           volume_mount {
@@ -342,4 +342,9 @@ resource "kubernetes_deployment" "this" {
       }
     }
   }
+
+  depends_on = [
+    kubernetes_role_binding.this,
+    kubernetes_cluster_role_binding.this
+  ]
 }
