@@ -3,6 +3,15 @@
 Create and deploy the AWS-EFS storage class on Kubernetes.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| aws | >= 2.31.0 |
+| kubernetes | >= 1.9.0 |
+| random | >= 2.0.0 |
+
 ## Providers
 
 | Name | Version |
@@ -14,7 +23,7 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | annotations | Annotations that will be applied and merged on all the kubernetes resources. | `map` | `{}` | no |
 | cluster\_role\_annotations | Map of annotations that will be added to the cluster role. | `map` | `{}` | no |
 | cluster\_role\_binding\_annotations | Map of annotations that will be added to the cluster role binding. | `map` | `{}` | no |
@@ -31,13 +40,13 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | efs\_kms\_key\_name | Name of the KMS key used by the AWS EFS. | `string` | `"efs-storage-class-k8s"` | no |
 | efs\_kms\_tags | Tags to add on the AWS EFS. | `map` | `{}` | no |
 | efs\_name | Name of the AWS EFS that will be created. | `string` | n/a | yes |
-| efs\_performance\_mode | Performance mode of the AWS EFS. | `string` | n/a | yes |
-| efs\_provisioned\_throughput\_in\_mibps | Provisioned throughput in MiB/s for the AWS EFS. | `number` | n/a | yes |
+| efs\_performance\_mode | Performance mode of the AWS EFS. | `string` | `null` | no |
+| efs\_provisioned\_throughput\_in\_mibps | Provisioned throughput in MiB/s for the AWS EFS. | `number` | `null` | no |
 | efs\_security\_group\_name | Name that will be given to the security group used by the AWS EFS. | `string` | n/a | yes |
 | efs\_security\_group\_tags | Tags to add on the security group for AWS EFS. | `map` | `{}` | no |
 | efs\_subnet\_ids | Subnet ID's from which the AWS EFS will be available. | `list` | n/a | yes |
 | efs\_tags | Map of tags that will applied and merged with all the AWS EFS related resources. | `map` | `{}` | no |
-| efs\_throughput\_mode | Troughput mode for the AWS EFS. | `string` | n/a | yes |
+| efs\_throughput\_mode | Troughput mode for the AWS EFS. | `string` | `null` | no |
 | enabled | Whether or not to enable this module. | `bool` | `true` | no |
 | image\_version | Version of the docker image to use for the efs-provisionner docker image. | `string` | `"latest"` | no |
 | labels | Map of labels that will be applied on all kubernetes resources. | `map` | `{}` | no |

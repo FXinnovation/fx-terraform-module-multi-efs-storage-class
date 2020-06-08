@@ -10,11 +10,10 @@ data "aws_region" "this" {}
 
 locals {
   labels = {
-    "app.kubernetes.io/name"       = "efs-provisioner"
-    "app.kubernetes.io/version"    = var.image_version
-    "app.kubernetes.io/component"  = "storage"
-    "app.kubernetes.io/part-of"    = "kubernetes"
-    "app.kubernetes.io/managed-by" = "terraform"
+    "name"       = "efs-provisioner"
+    "version"    = var.image_version
+    "part-of"    = "storage"
+    "managed-by" = "terraform"
   }
 }
 
@@ -72,7 +71,7 @@ resource "kubernetes_service_account" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/instance" = var.service_account_name
+        "instance" = var.service_account_name
       },
       local.labels,
       var.labels,
@@ -92,7 +91,8 @@ resource "kubernetes_cluster_role" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/instance" = var.cluster_role_name
+        "instance"  = var.cluster_role_name
+        "component" = "rbac"
       },
       local.labels,
       var.labels,
@@ -136,7 +136,8 @@ resource "kubernetes_cluster_role_binding" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/instance" = var.cluster_role_binding_name
+        "instance"  = var.cluster_role_binding_name
+        "component" = "rbac"
       },
       local.labels,
       var.labels,
@@ -169,7 +170,8 @@ resource "kubernetes_role" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/instance" = var.role_name
+        "instance"  = var.role_name
+        "component" = "rbac"
       },
       local.labels,
       var.labels,
@@ -196,7 +198,8 @@ resource "kubernetes_role_binding" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/instance" = var.role_binding_name
+        "instance"  = var.role_binding_name
+        "component" = "rbac"
       },
       local.labels,
       var.labels,
@@ -232,7 +235,8 @@ resource "kubernetes_storage_class" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/instance" = var.storage_class_name
+        "instance"  = var.storage_class_name
+        "component" = "storage-class"
       },
       local.labels,
       var.labels,
@@ -260,7 +264,8 @@ resource "kubernetes_deployment" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/instance" = var.deployment_name
+        "instance"  = var.deployment_name
+        "component" = "backend"
       },
       local.labels,
       var.labels,
@@ -290,7 +295,8 @@ resource "kubernetes_deployment" "this" {
         )
         labels = merge(
           {
-            "app.kubernetes.io/instance" = var.deployment_name
+            "instance"  = var.deployment_name
+            "component" = "backend"
           },
           local.labels,
           var.labels,
