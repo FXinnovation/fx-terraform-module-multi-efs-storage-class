@@ -14,14 +14,15 @@ resource "random_string" "this" {
 #####
 
 module "eks" {
-  source = "git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks.git?ref=1.1.1"
+  source = "git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks.git?ref=2.0.0"
 
   iam_role_name       = "eks${random_string.this.result}"
   name                = "eks${random_string.this.result}"
   security_group_name = "eks${random_string.this.result}"
   subnet_ids          = tolist(data.aws_subnet_ids.this.ids)
 
-  allowed_security_group_ids = [module.eks_worker_pool.security_group_id]
+  allowed_security_group_ids   = [module.eks_worker_pool.security_group_id]
+  allowed_security_group_count = 1
 }
 
 #####
@@ -58,4 +59,5 @@ module "efs_storage_class" {
   efs_security_group_name        = random_string.this.result
   efs_subnet_ids                 = tolist(data.aws_subnet_ids.this.ids)
   efs_allowed_security_group_ids = [module.eks.security_group_id, module.eks_worker_pool.security_group_id]
+  deployment_replicas            = 0
 }
