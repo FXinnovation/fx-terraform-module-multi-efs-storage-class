@@ -1,7 +1,9 @@
 # CHANGELOG
 
 ## 0.3.0
+
 * fix: Make labels respect best practices
+* chore: Update example
 
 ## 0.2.0
 

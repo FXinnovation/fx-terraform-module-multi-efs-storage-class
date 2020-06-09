@@ -20,7 +20,6 @@ module "eks" {
   name                = "eks${random_string.this.result}"
   security_group_name = "eks${random_string.this.result}"
   subnet_ids          = tolist(data.aws_subnet_ids.this.ids)
-  kubernetes_version  = "1.13"
 
   allowed_security_group_ids = [module.eks_worker_pool.security_group_id]
 }
