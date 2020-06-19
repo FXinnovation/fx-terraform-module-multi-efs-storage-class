@@ -58,6 +58,11 @@ variable "efs_allowed_security_group_ids" {
   default     = []
 }
 
+variable "efs_allowed_cidrs" {
+  description = "CIDRs allowed to access the EFS. Must be a list of object containing “cidr” and “target” (the target of the CIDR)."
+  default     = []
+}
+
 variable "efs_name" {
   description = "Name of the AWS EFS that will be created."
   type        = string

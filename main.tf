@@ -53,6 +53,7 @@ module "efs" {
   security_group_tags             = var.efs_security_group_tags
   subnet_ids                      = var.efs_subnet_ids
   tags                            = merge(var.tags, var.efs_tags)
+  allowed_cidrs                   = var.efs_allowed_cidrs
 }
 
 #####

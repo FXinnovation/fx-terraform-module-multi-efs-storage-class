@@ -35,6 +35,7 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | deployment\_labels | Map of labels that will be added to the deployment. | `map` | `{}` | no |
 | deployment\_name | Name of the deployment that will be created in kubernetes. | `string` | `"efs-provisioner"` | no |
 | deployment\_replicas | Number of replicas for the deployment. | `number` | `2` | no |
+| efs\_allowed\_cidrs | CIDRs allowed to access the EFS. Must be a list of object containing “cidr” and “target” (the target of the CIDR). | `list` | `[]` | no |
 | efs\_allowed\_security\_group\_ids | List of security group ids that are allowed to communicate with EFS. | `list` | `[]` | no |
 | efs\_kms\_key\_alias\_name | Name of the alias for the KMS key used by the AWS EFS. | `string` | `"alias/efs-storage-class-k8s"` | no |
 | efs\_kms\_key\_name | Name of the KMS key used by the AWS EFS. | `string` | `"efs-storage-class-k8s"` | no |
