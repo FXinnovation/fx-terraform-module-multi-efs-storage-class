@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.6.0
+* feat: allow user to use custom image by setting variable
+
+## 0.5.0
+* feat: allows cidrs to access the EFS sharte.
+
 ## 0.4.0
 
 * fix: Make labels respect best practices

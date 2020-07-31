@@ -126,6 +126,11 @@ variable "enabled" {
   default     = true
 }
 
+variable "image" {
+  description = "Name of the image to use."
+  default     = "quay.io/external_storage/efs-provisioner"
+}
+
 variable "image_version" {
   description = "Version of the docker image to use for the efs-provisionner docker image."
   default     = "latest"

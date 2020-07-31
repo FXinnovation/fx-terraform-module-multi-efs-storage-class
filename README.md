@@ -49,6 +49,7 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | efs\_tags | Map of tags that will applied and merged with all the AWS EFS related resources. | `map` | `{}` | no |
 | efs\_throughput\_mode | Troughput mode for the AWS EFS. | `string` | `null` | no |
 | enabled | Whether or not to enable this module. | `bool` | `true` | no |
+| image | Name of the image to use. | `string` | `"quay.io/external_storage/efs-provisioner"` | no |
 | image\_version | Version of the docker image to use for the efs-provisionner docker image. | `string` | `"latest"` | no |
 | labels | Map of labels that will be applied on all kubernetes resources. | `map` | `{}` | no |
 | namespace | Namespace in which the efs-provisioner will be deployed. | `string` | `"kube-system"` | no |

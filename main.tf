@@ -313,7 +313,7 @@ resource "kubernetes_deployment" "this" {
         service_account_name            = element(concat(kubernetes_service_account.this.*.metadata.0.name, list("")), 0)
         automount_service_account_token = true
         container {
-          image = "quay.io/external_storage/efs-provisioner:${var.image_version}"
+          image = "${var.image}:${var.image_version}"
           name  = "efs-provisioner"
 
           env {
