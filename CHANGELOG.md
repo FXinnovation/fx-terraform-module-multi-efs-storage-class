@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## x.x.x (not yet released)
+
+* chore: bump pre-commit hooks
+
 ## 0.6.0
 * feat: allow user to use custom image by setting variable
 
