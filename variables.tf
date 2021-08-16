@@ -113,7 +113,7 @@ variable "efs_security_group_tags" {
 
 variable "efs_subnet_ids" {
   description = "Subnet ID's from which the AWS EFS will be available."
-  type        = list
+  type        = list(any)
 }
 
 variable "efs_tags" {

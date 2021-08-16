@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## x.x.x (not yet released)
+## 0.7.0
 
+* fix: Replace old list function deprecated since terraform 0.12 by tolist
 * chore: bump pre-commit hooks
 
 ## 0.6.0
