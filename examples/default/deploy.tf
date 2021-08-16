@@ -60,4 +60,7 @@ module "efs_storage_class" {
   efs_subnet_ids                 = tolist(data.aws_subnet_ids.this.ids)
   efs_allowed_security_group_ids = [module.eks.security_group_id, module.eks_worker_pool.security_group_id]
   deployment_replicas            = 0
+  efs_kms_key_name               = "efs-storage-class-k8s-${random_string.this.result}"
+  efs_kms_key_alias_name         = "alias/efs-storage-class-k8s-${random_string.this.result}"
+
 }
