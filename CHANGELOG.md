@@ -2,7 +2,7 @@
 
 ## 0.7.0
 
-* fix: Replace old list function deprecated since terraform 0.12 by tolist
+* fix: Remove old list function deprecated since terraform 0.12
 * chore: bump pre-commit hooks
 
 ## 0.6.0

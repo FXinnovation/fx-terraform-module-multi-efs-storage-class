@@ -65,7 +65,7 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 | <a name="input_efs_provisioned_throughput_in_mibps"></a> [efs\_provisioned\_throughput\_in\_mibps](#input\_efs\_provisioned\_throughput\_in\_mibps) | Provisioned throughput in MiB/s for the AWS EFS. | `number` | `null` | no |
 | <a name="input_efs_security_group_name"></a> [efs\_security\_group\_name](#input\_efs\_security\_group\_name) | Name that will be given to the security group used by the AWS EFS. | `string` | n/a | yes |
 | <a name="input_efs_security_group_tags"></a> [efs\_security\_group\_tags](#input\_efs\_security\_group\_tags) | Tags to add on the security group for AWS EFS. | `map` | `{}` | no |
-| <a name="input_efs_subnet_ids"></a> [efs\_subnet\_ids](#input\_efs\_subnet\_ids) | Subnet ID's from which the AWS EFS will be available. | `list(any)` | n/a | yes |
+| <a name="input_efs_subnet_ids"></a> [efs\_subnet\_ids](#input\_efs\_subnet\_ids) | Subnet ID's from which the AWS EFS will be available. | `list(string)` | n/a | yes |
 | <a name="input_efs_tags"></a> [efs\_tags](#input\_efs\_tags) | Map of tags that will applied and merged with all the AWS EFS related resources. | `map` | `{}` | no |
 | <a name="input_efs_throughput_mode"></a> [efs\_throughput\_mode](#input\_efs\_throughput\_mode) | Troughput mode for the AWS EFS. | `string` | `null` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether or not to enable this module. | `bool` | `true` | no |
