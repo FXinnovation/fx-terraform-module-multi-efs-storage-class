@@ -2,7 +2,7 @@
 # Datasources
 #####
 
-data "aws_vpc" "default" {
+data "aws_vpc" "this" {
   default = true
 }
 
