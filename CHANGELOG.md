@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 1.0.0
+
+* (BREAKING) chore: pins `pre-commit-hooks` to `v4.0.1`.
+* (BREAKING) chore: pins `kubernetes` provider to `2.x+`.
+* (BREAKING) chore: pins `random` provider to `3.x+`.
+* (BREAKING) chore: bump `aws-eks` module version to `3.0.0`.
+* (BREAKING) chore: bump `aws-eks-worker-pool` module version to `5.0.0`.
+* feat: add `pre-commit-afcmf` (`v0.1.2`).
+* chore: pins `pre-commit-terraform` to `v1.50.0`.
+* refactor: default example:
+  * add `versions.tf` file.
+  * add `README.md` file.
+  * lint code.
+* fix: `LICENSE` file.
+
 ## 0.7.0
 
 * fix: Remove old list function deprecated since terraform 0.12
