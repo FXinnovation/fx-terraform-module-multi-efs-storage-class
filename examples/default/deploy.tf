@@ -32,7 +32,7 @@ module "eks" {
 #####
 
 module "eks_worker_pool" {
-  source = "git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks-worker-pool.git?ref=1.0.0"
+  source = "git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks-worker-pool.git?ref=5.0.0"
 
   autoscaling_group_name = "ekswp${random_string.this.result}"
 
