@@ -19,10 +19,6 @@ resource "aws_security_group" "this" {
   vpc_id = data.aws_vpc.this.id
 }
 
-#####
-# Security Group
-#####
-
 resource "aws_security_group" "this_worker" {
   name   = "sg${random_string.this.result}"
   vpc_id = data.aws_vpc.this.id
@@ -36,13 +32,13 @@ resource "aws_security_group" "this_worker" {
 module "eks" {
   source = "git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks.git?ref=3.0.0"
 
+  allowed_security_group_ids   = [aws_security_group.this.id]
+  allowed_security_group_count = 1
+
   iam_role_name       = "eks${random_string.this.result}"
   name                = "eks${random_string.this.result}"
   security_group_name = "eks${random_string.this.result}"
   subnet_ids          = tolist(data.aws_subnet_ids.this.ids)
-
-  allowed_security_group_ids   = [aws_security_group.this.id]
-  allowed_security_group_count = 1
 }
 
 
