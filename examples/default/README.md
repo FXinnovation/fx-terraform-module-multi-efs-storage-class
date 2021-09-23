@@ -32,7 +32,7 @@ $ terraform apply
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_efs_storage_class"></a> [efs\_storage\_class](#module\_efs\_storage\_class) | ../../ | n/a |
-| <a name="module_eks"></a> [eks](#module\_eks) | git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks.git | 2.0.0 |
+| <a name="module_eks"></a> [eks](#module\_eks) | git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks.git | 3.0.0 |
 | <a name="module_eks_worker_pool"></a> [eks\_worker\_pool](#module\_eks\_worker\_pool) | git::ssh://git@scm.dazzlingwrench.fxinnovation.com:2222/fxinnovation-public/terraform-module-aws-eks-worker-pool.git | 1.0.0 |
 
 ## Resources
