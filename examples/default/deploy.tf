@@ -9,6 +9,7 @@ resource "random_string" "this" {
   number  = false
 }
 
+
 #####
 # EKS Cluster
 #####
@@ -24,6 +25,7 @@ module "eks" {
   allowed_security_group_ids   = [module.eks_worker_pool.security_group_id]
   allowed_security_group_count = 1
 }
+
 
 #####
 # EKS Worker Pool
@@ -48,6 +50,7 @@ module "eks_worker_pool" {
 
   subnet_ids = tolist(data.aws_subnet_ids.this.ids)
 }
+
 
 #####
 # EFS Storage Class
