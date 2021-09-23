@@ -4,6 +4,7 @@
 
 data "aws_region" "this" {}
 
+
 #####
 # Locals
 #####
@@ -16,6 +17,7 @@ locals {
     "managed-by" = "terraform"
   }
 }
+
 
 #####
 # Randoms
@@ -55,6 +57,7 @@ module "efs" {
   tags                            = merge(var.tags, var.efs_tags)
   allowed_cidrs                   = var.efs_allowed_cidrs
 }
+
 
 #####
 # Kubernetes RBAC
@@ -221,6 +224,7 @@ resource "kubernetes_role_binding" "this" {
   }
 }
 
+
 #####
 # Storage Class
 #####
@@ -247,6 +251,7 @@ resource "kubernetes_storage_class" "this" {
 
   storage_provisioner = "aws.amazon.com/efs"
 }
+
 
 #####
 # Deployment
