@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.0
+
+* fix: Remove old list function deprecated since terraform 0.12 in outputs.tf and remove map function
+* chore: bump pre-commit hooks
+
 ## 0.7.0
 
 * fix: Remove old list function deprecated since terraform 0.12
