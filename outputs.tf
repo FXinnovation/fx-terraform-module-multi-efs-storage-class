@@ -50,35 +50,35 @@ output "namespace" {
 
 output "service_account_name" {
   description = "Name of the kubernetes service account created for the efs-provisioner."
-  value       = element(concat(kubernetes_service_account.this.*.metadata.0.name, list("")), 0)
+  value       = element(concat(kubernetes_service_account.this.*.metadata.0.name, []), 0)
 }
 
 output "cluster_role_name" {
   description = "Name of the kubernetes cluster role created for the efs-provisioner."
-  value       = element(concat(kubernetes_cluster_role.this.*.metadata.0.name, list("")), 0)
+  value       = element(concat(kubernetes_cluster_role.this.*.metadata.0.name, []), 0)
 }
 
 output "cluster_role_binding_name" {
   description = "Name of the kubernetes cluster role binding created for the efs-provisioner."
-  value       = element(concat(kubernetes_cluster_role_binding.this.*.metadata.0.name, list("")), 0)
+  value       = element(concat(kubernetes_cluster_role_binding.this.*.metadata.0.name, []), 0)
 }
 
 output "role_name" {
   description = "Name of the kubernetes role created for the efs-provisioner."
-  value       = element(concat(kubernetes_role.this.*.metadata.0.name, list("")), 0)
+  value       = element(concat(kubernetes_role.this.*.metadata.0.name, []), 0)
 }
 
 output "role_binding_name" {
   description = "Name of the kubernetes role binding created for the efs-provisioner."
-  value       = element(concat(kubernetes_role_binding.this.*.metadata.0.name, list("")), 0)
+  value       = element(concat(kubernetes_role_binding.this.*.metadata.0.name, []), 0)
 }
 
 output "storage_class_name" {
   description = "Name of the kubernetes storage class created."
-  value       = element(concat(kubernetes_storage_class.this.*.metadata.0.name, list("")), 0)
+  value       = element(concat(kubernetes_storage_class.this.*.metadata.0.name, []), 0)
 }
 
 output "deployment_name" {
   description = "Name of the kubernetes deployment created for the efs-provisioner."
-  value       = element(concat(kubernetes_deployment.this.*.metadata.0.name, list("")), 0)
+  value       = element(concat(kubernetes_deployment.this.*.metadata.0.name, []), 0)
 }
