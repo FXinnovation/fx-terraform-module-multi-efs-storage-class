@@ -15,6 +15,7 @@ locals {
     "part-of"    = "storage"
     "managed-by" = "terraform"
   }
+  hash = sha256(format("%s-%s", module.efs.kms_alias_arn, join("-", module.efs.security_group_rule_ids, module.efs.efs_mount_target_ids)))
 }
 
 #####
@@ -35,7 +36,7 @@ resource "random_string" "selector" {
 #####
 
 module "efs" {
-  source = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-aws-efs.git?ref=2.1.1"
+  source = "github.com/FXinnovation/fx-terraform-module-aws-efs.git?ref=2.3.0"
 
   enabled                         = var.enabled
   name                            = var.efs_name
@@ -259,7 +260,7 @@ resource "kubernetes_deployment" "this" {
     name      = var.deployment_name
     namespace = var.namespace
     annotations = merge(
-      map("fxinnovation.com/dependency", sha256(format("%s-%s", module.efs.kms_alias_arn, join("-", module.efs.security_group_rule_ids, module.efs.efs_mount_target_ids)))),
+      { "fxinnovation.com/dependency" : local.hash },
       var.annotations,
       var.deployment_annotations
     )
