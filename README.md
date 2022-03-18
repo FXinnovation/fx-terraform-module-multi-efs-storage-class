@@ -24,7 +24,7 @@ Create and deploy the AWS-EFS storage class on Kubernetes.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_efs"></a> [efs](#module\_efs) | git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-aws-efs.git | 3.0.0 |
+| <a name="module_efs"></a> [efs](#module\_efs) | git::https://github.com/FXinnovation/fx-terraform-module-aws-efs.git | 3.0.0 |
 
 ## Resources
 
