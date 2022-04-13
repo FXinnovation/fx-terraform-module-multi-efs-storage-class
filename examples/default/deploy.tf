@@ -30,7 +30,7 @@ resource "aws_security_group" "this_worker" {
 #####
 
 module "eks" {
-  source = "git::ssh://git@github.com/FXinnovation/fx-terraform-module-aws-eks.git?ref=3.0.0"
+  source = "github.com/FXinnovation/fx-terraform-module-aws-eks.git?ref=3.0.0"
 
   allowed_security_group_ids   = [aws_security_group.this.id]
   allowed_security_group_count = 1
@@ -47,7 +47,7 @@ module "eks" {
 #####
 
 module "eks_worker_pool" {
-  source = "git::ssh://git@github.com/FXinnovation/fx-terraform-module-aws-eks-worker-pool.git?ref=5.0.0"
+  source = "github.com/FXinnovation/fx-terraform-module-aws-eks-worker-pool.git?ref=5.0.0"
 
   autoscaling_group_name    = "ekswp${random_string.this.result}"
   cluster_name              = module.eks.name
