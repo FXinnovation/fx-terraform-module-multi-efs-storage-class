@@ -36,7 +36,7 @@ resource "random_string" "selector" {
 #####
 
 module "efs" {
-  source = "github.com/FXinnovation/fx-terraform-module-aws-efs.git?ref=2.3.0"
+  source = "github.com/FXinnovation/fx-terraform-module-aws-efs.git?ref=3.0.0"
 
   enabled                         = var.enabled
   name                            = var.efs_name
